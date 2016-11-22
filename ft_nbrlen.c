@@ -6,7 +6,7 @@
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/13 14:46:59 by lbopp             #+#    #+#             */
-/*   Updated: 2016/11/13 15:52:41 by lbopp            ###   ########.fr       */
+/*   Updated: 2016/11/14 11:19:11 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_nbrlen(int n)
 		nb = -n;
 		size++;
 	}
-	while (nb / 10 > (unsigned int)div)
+	while (nb / 10 >= (unsigned int)div)
 	{
 		div *= 10;
 		size++;

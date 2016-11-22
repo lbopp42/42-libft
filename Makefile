@@ -6,7 +6,7 @@
 #    By: lbopp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 15:29:49 by lbopp             #+#    #+#              #
-#    Updated: 2016/11/13 16:06:23 by lbopp            ###   ########.fr        #
+#    Updated: 2016/11/22 16:31:30 by lbopp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRC = ft_memset.c\
 	  ft_abs.c\
 	  ft_power.c\
 	  ft_nbrlen.c\
-	  ft_swap.c
+	  ft_swap.c\
+	  ft_strndup.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -93,3 +94,5 @@ fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
+
+.phony: all $(NAME) clean fclean re
