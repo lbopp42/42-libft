@@ -6,7 +6,7 @@
 #    By: lbopp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 15:29:49 by lbopp             #+#    #+#              #
-#    Updated: 2016/11/22 16:31:30 by lbopp            ###   ########.fr        #
+#    Updated: 2016/11/26 09:16:56 by lbopp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ SRC = ft_memset.c\
 	  ft_power.c\
 	  ft_nbrlen.c\
 	  ft_swap.c\
-	  ft_strndup.c
+	  ft_strndup.c\
+	  ft_stradd.c
 
 OBJ = $(SRC:.c=.o)
 
