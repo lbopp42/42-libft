@@ -6,7 +6,7 @@
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:58:35 by lbopp             #+#    #+#             */
-/*   Updated: 2016/11/26 09:15:33 by lbopp            ###   ########.fr       */
+/*   Updated: 2016/11/30 09:31:44 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int				ft_abs(int n);
 int				ft_power(int nb, int pow);
 int				ft_nbrlen(int n);
 void			ft_swap(int *a, int *b);
-char			*ft_strndup(const char *s1, char n);
-char			*ft_stradd(char const *s1, char const *s2);
+char			*ft_strcdup(const char *s1, char c);
+char			*ft_stradd(char *s1, char const *s2);
 
 #endif

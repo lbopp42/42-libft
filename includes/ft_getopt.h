@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_stradd.c                                        :+:      :+:    :+:   */
+/*   ft_getopt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 09:11:49 by lbopp             #+#    #+#             */
-/*   Updated: 2016/11/30 11:24:10 by lbopp            ###   ########.fr       */
+/*   Created: 2016/12/09 11:20:16 by lbopp             #+#    #+#             */
+/*   Updated: 2016/12/10 09:20:25 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_GETOPT_H
+# define FT_GETOPT_H
 
-char	*ft_stradd(char *s1, char const *s2)
-{
-	char	*new;
+# include <unistd.h>
 
-	new = ft_strjoin(s1, s2);
-	free(s1);
-	return (new);
-}
+extern char *g_optarg;
+extern int g_optind;
+extern int g_optopt;
+extern int g_opterr;
+extern int g_optreset;
+
+int	ft_getopt(int ac, const char *av[], const char *optstring);
+
+#endif
