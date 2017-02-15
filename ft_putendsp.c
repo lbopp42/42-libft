@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putendsp.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:29:53 by lbopp             #+#    #+#             */
-/*   Updated: 2017/01/17 13:43:56 by lbopp            ###   ########.fr       */
+/*   Created: 2016/12/17 12:11:33 by lbopp             #+#    #+#             */
+/*   Updated: 2016/12/17 12:14:43 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+void	ft_putendsp(char const *s)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	ft_putstr(s);
+	write(1, " ", 1);
 }

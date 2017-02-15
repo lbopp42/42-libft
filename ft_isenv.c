@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isenv.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lbopp <lbopp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:29:53 by lbopp             #+#    #+#             */
-/*   Updated: 2017/01/17 13:43:56 by lbopp            ###   ########.fr       */
+/*   Created: 2017/01/29 12:51:27 by lbopp             #+#    #+#             */
+/*   Updated: 2017/02/05 16:00:48 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+int	ft_isenv(t_lst *env_lst, char *var)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	while (env_lst != NULL)
+	{
+		if (!ft_strcmp(env_lst->name, var))
+			return (1);
+		env_lst = env_lst->next;
+	}
+	return (0);
 }

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_add_next_list_cir.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:29:53 by lbopp             #+#    #+#             */
-/*   Updated: 2017/01/17 13:43:56 by lbopp            ###   ########.fr       */
+/*   Created: 2017/02/15 11:16:50 by lbopp             #+#    #+#             */
+/*   Updated: 2017/02/15 11:16:52 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+void	ft_add_next_list_cir(t_list_cir **cour, t_list_cir *new)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	if (*cour == NULL)
+		*cour = new;
+	else
+	{
+		(*cour)->next->prev = new;
+		new->next = (*cour)->next;
+		new->prev = *cour;
+		(*cour)->next = new;
+	}
 }

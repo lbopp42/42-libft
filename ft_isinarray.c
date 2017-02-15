@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_isinarray.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:29:53 by lbopp             #+#    #+#             */
-/*   Updated: 2017/01/17 13:43:56 by lbopp            ###   ########.fr       */
+/*   Created: 2017/02/10 11:38:02 by lbopp             #+#    #+#             */
+/*   Updated: 2017/02/10 11:38:07 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+int	ft_isinarray(char *var, char **array)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	int i;
+
+	i = 0;
+	while (array[i])
+	{
+		if (!ft_strcmp(var, array[i]))
+			return (1);
+		i++;
+	}
+	return (0);
 }

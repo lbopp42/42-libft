@@ -6,10 +6,11 @@
 #    By: lbopp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 15:29:49 by lbopp             #+#    #+#              #
-#    Updated: 2016/12/10 09:29:12 by lbopp            ###   ########.fr        #
+#    Updated: 2017/02/10 14:54:29 by lbopp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+.PHONY: all, clean, fclean, re
 NAME = libft.a
 
 SRC = ft_memset.c\
@@ -77,17 +78,39 @@ SRC = ft_memset.c\
 	  ft_swap.c\
 	  ft_strcdup.c\
 	  ft_stradd.c\
-	  ft_getopt.c
+	  ft_getopt.c\
+	  ft_putendsp.c\
+	  ft_putendch.c\
+	  ft_putendch_fd.c\
+	  ft_putendstr.c\
+	  ft_putendstr_fd.c\
+	  ft_whitespaces.c\
+	  ft_isspace.c\
+	  get_next_line.c\
+	  ft_isenv.c\
+	  ft_countwordchar.c\
+	  ft_strsplitquote.c\
+	  ft_whitespacesquote.c\
+	  ft_countwordspace.c\
+	  ft_addslash.c\
+	  ft_isinarray.c\
+	  ft_create_list_cir.c\
+	  ft_add_next_list_cir.c\
+	  ft_print_list_cir.c
 
 OBJ = $(SRC:.c=.o)
-
-FLAG = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
+CC = gcc
 
 all: $(NAME)
 
-$(NAME):
-	gcc $(FLAG) -c $(SRC) -I includes/
-	ar rc $(NAME) $(OBJ)
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) -c $(SRC) -I includes/
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $^ -o $@ -I includes
 
 clean:
 	@/bin/rm -f $(OBJ)
@@ -96,5 +119,3 @@ fclean: clean
 	@/bin/rm -f $(NAME)
 
 re: fclean all
-
-.phony: all $(NAME) clean fclean re

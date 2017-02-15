@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrimchar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lbopp <lbopp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 11:02:32 by lbopp             #+#    #+#             */
-/*   Updated: 2016/11/12 15:28:34 by lbopp            ###   ########.fr       */
+/*   Updated: 2017/02/03 11:18:03 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int		ft_trimsize(char const *s, int start, char c)
 		return (i - start);
 }
 
-static char		*ft_trimnews(const char *s, int start, int len, char *news)
+static char		*ft_trimnews(char const *s, int start, int len, char *news)
 {
 	int i;
 
@@ -40,11 +40,10 @@ static char		*ft_trimnews(const char *s, int start, int len, char *news)
 		start++;
 		i++;
 	}
-	news[i] = '\0';
 	return (news);
 }
 
-char			*ft_strtrimchar(char const *s, char c)
+char			*ft_strtrimchar(char *s, char c)
 {
 	char	*news;
 	int		i;
@@ -54,13 +53,15 @@ char			*ft_strtrimchar(char const *s, char c)
 
 	i = 0;
 	j = 0;
+	start = 0;
+	size = 0;
 	if (!s)
 		return (0);
 	while (s[i] && s[i] == c)
 		i++;
 	start = i;
 	size = ft_trimsize(s, start, c);
-	if (!(news = (char*)malloc(sizeof(char) * (size + 1))))
+	if (!(news = (char*)ft_memalloc(size + 1)))
 		return (0);
 	news = ft_trimnews(s, start, size + start, news);
 	return (news);

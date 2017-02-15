@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_whitespaces.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbopp <lbopp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/12 15:27:12 by lbopp             #+#    #+#             */
-/*   Updated: 2017/02/06 10:57:37 by lbopp            ###   ########.fr       */
+/*   Created: 2017/02/07 12:23:02 by lbopp             #+#    #+#             */
+/*   Updated: 2017/02/07 12:31:32 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_word(char const *s, char c)
+static int		ft_word(char const *s)
 {
 	int	i;
 	int	word;
@@ -21,16 +21,16 @@ static int		ft_word(char const *s, char c)
 	word = 0;
 	while (s[i])
 	{
-		if (s[i] && s[i] != c)
+		if (s[i] && !ft_isspace(s[i]))
 			word++;
-		while (s[i] && s[i] != c)
+		while (s[i] && !ft_isspace(s[i]))
 			i++;
 		s[i] ? i++ : 0;
 	}
 	return (word);
 }
 
-static	char	**ft_fill(char *s, char **array, char c)
+static	char	**ft_fill(char *s, char **array)
 {
 	int i;
 	int letter;
@@ -41,13 +41,13 @@ static	char	**ft_fill(char *s, char **array, char c)
 	while (s[i])
 	{
 		letter = 0;
-		while (s[i] && s[i] != c)
+		while (s[i] && !ft_isspace(s[i]))
 		{
 			array[word][letter] = s[i];
 			letter++;
 			i++;
 		}
-		while (s[i] && s[i] == c)
+		while (s[i] && ft_isspace(s[i]))
 			i++;
 		word++;
 	}
@@ -55,7 +55,7 @@ static	char	**ft_fill(char *s, char **array, char c)
 	return (array);
 }
 
-static	char	**ft_letter(char const *s, char c, char **array)
+static	char	**ft_letter(char const *s, char **array)
 {
 	int i;
 	int letter;
@@ -66,12 +66,12 @@ static	char	**ft_letter(char const *s, char c, char **array)
 	while (s[i])
 	{
 		letter = 0;
-		while (s[i] && s[i] != c)
+		while (s[i] && !ft_isspace(s[i]))
 		{
 			letter++;
 			i++;
 		}
-		while (s[i] && s[i] == c)
+		while (s[i] && ft_isspace(s[i]))
 			i++;
 		if (!(array[word] = (char*)ft_memalloc(letter + 1)))
 			return (NULL);
@@ -80,7 +80,7 @@ static	char	**ft_letter(char const *s, char c, char **array)
 	return (array);
 }
 
-char			**ft_strsplit(char *s, char c)
+char			**ft_whitespaces(char const *s)
 {
 	int		i;
 	int		word;
@@ -91,12 +91,12 @@ char			**ft_strsplit(char *s, char c)
 	word = 0;
 	if (!(s))
 		return (NULL);
-	if (!(new = ft_strtrimchar(s, c)))
+	if (!(new = ft_strtrim(s)))
 		return (0);
-	word = ft_word(new, c);
+	word = ft_word(new);
 	if (!(array = (char**)ft_memalloc(sizeof(char*) * (word + 1))))
 		return (0);
-	if (!(array = ft_letter(new, c, array)))
+	if (!(array = ft_letter(new, array)))
 		return (0);
-	return (ft_fill(new, array, c));
+	return (ft_fill(new, array));
 }

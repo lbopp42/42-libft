@@ -6,11 +6,11 @@
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 09:59:44 by lbopp             #+#    #+#             */
-/*   Updated: 2016/12/10 09:19:25 by lbopp            ###   ########.fr       */
+/*   Updated: 2017/01/17 12:09:26 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_getopt.h"
 #include "libft.h"
 
 char	*g_optarg = 0;
@@ -19,8 +19,10 @@ int		g_optopt = 0;
 int		g_opterr = 1;
 int		g_optreset = 0;
 
-int	treatment_opt(const char *av[], int *i, const char *optstring)
+int		treatment_opt(const char *av[], int *i, const char *optstring, int *end)
 {
+	if (av[g_optind] && !av[g_optind][*i + 1])
+		*end += 1;
 	if (ft_strchr(optstring, av[g_optind][*i]))
 	{
 		*i += 1;
@@ -42,23 +44,37 @@ int	treatment_opt(const char *av[], int *i, const char *optstring)
 	}
 }
 
-int	ft_getopt(int ac, const char *av[], const char *optstring)
+void	reset(int *i)
+{
+	g_optind++;
+	*i = 1;
+}
+
+int		ft_getopt(int ac, const char *av[], const char *optstring)
 {
 	static int	i = 1;
-	int			ret;
+	static int	end = 0;
 
+	if (end)
+	{
+		reset(&i);
+		end = 0;
+	}
 	if (ac >= 2)
 	{
-		if (av[g_optind][i] == '\0' && av[g_optind + 1])
+		if (av[g_optind] && av[g_optind][0] == '-' && av[g_optind][1] == '-')
 		{
 			g_optind++;
-			i = 1;
-		}
-		if (av[g_optind][0] == '-' && av[g_optind][1] == '-')
 			return (-1);
-		if (av[g_optind][i] != '\0' && av[g_optind][0] == '-')
-			if ((ret = treatment_opt(av, &i, optstring)))
-				return (ret);
+		}
+		if (av[g_optind] && av[g_optind][0] == '-' && av[g_optind][1] == '\0')
+			return (-1);
+		else if (av[g_optind] && av[g_optind][i] == '\0' &&
+				av[g_optind][0] == '-')
+			reset(&i);
+		if (av[g_optind] && av[g_optind][i] && av[g_optind][0] == '-' &&
+				av[g_optind][i] != '-')
+			return (treatment_opt(av, &i, optstring, &end));
 	}
 	return (-1);
 }

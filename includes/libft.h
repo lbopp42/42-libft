@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: lbopp <lbopp@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 10:58:35 by lbopp             #+#    #+#             */
-/*   Updated: 2016/11/30 09:31:44 by lbopp            ###   ########.fr       */
+/*   Updated: 2017/02/07 12:27:48 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "ft_getopt.h"
+# include "get_next_line.h"
 
 typedef struct	s_list
 {
@@ -23,6 +25,20 @@ typedef struct	s_list
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_lst
+{
+	char			*name;
+	char			*content;
+	struct s_lst	*next;
+}				t_lst;
+
+typedef struct	s_list_cir
+{
+	char				*content;
+	struct s_list_cir	*prev;
+	struct s_list_cir	*next;
+}				t_list_cir;
 
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
@@ -66,7 +82,7 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
-char			**ft_strsplit(char const *s, char c);
+char			**ft_strsplit(char *s, char c);
 char			*ft_itoa(int n);
 void			ft_putchar(char c);
 void			ft_putstr(char const *s);
@@ -82,12 +98,29 @@ void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
-char			*ft_strtrimchar(char const *s, char c);
+char			*ft_strtrimchar(char *s, char c);
 int				ft_abs(int n);
 int				ft_power(int nb, int pow);
-int				ft_nbrlen(int n);
+size_t			ft_nbrlen(int n);
 void			ft_swap(int *a, int *b);
 char			*ft_strcdup(const char *s1, char c);
 char			*ft_stradd(char *s1, char const *s2);
+void			ft_putendsp(char const *s);
+void			ft_putendch_fd(char const *s, char c, int fd);
+void			ft_putendch(char const *s, char c);
+void			ft_putendstr(char const *s1, char const *s2);
+void			ft_putendstr_fd(char const *s1, char const *s2, int fd);
+int				ft_isspace(int c);
+char			**ft_whitespaces(char const *s);
+int				ft_isenv(t_lst *env, char *var);
+int				ft_countwordchar(char *s, char c);
+char			**ft_strsplitquote(char *s, char c);
+int				ft_countwordspace(char *s);
+char			**ft_whitespacesquote(char const *s);
+char			*ft_addslash(char *s1, char *s2);
+int				ft_isinarray(char *var, char **array);
+t_list_cir		*ft_create_list_cir(char *content);
+void			ft_add_next_list_cir(t_list_cir **cour, t_list_cir *new);
+void			ft_print_list_cir(t_list_cir *list_cir);
 
 #endif

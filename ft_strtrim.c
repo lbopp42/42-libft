@@ -6,7 +6,7 @@
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:26:56 by lbopp             #+#    #+#             */
-/*   Updated: 2016/11/12 17:48:22 by lbopp            ###   ########.fr       */
+/*   Updated: 2017/01/20 12:54:22 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int		ft_size(char const *s, int start)
 	i = start;
 	while (s[i])
 		i++;
-	while ((s[i - 1] == ' ' || s[i - 1] == '\n' || s[i - 1] == '\t') && (i > 0))
+	while (ft_isspace(s[i - 1]) && (i > 0))
 	{
 		i--;
 	}
@@ -56,7 +56,7 @@ char			*ft_strtrim(char const *s)
 	j = 0;
 	if (!s)
 		return (0);
-	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+	while (s[i] && ft_isspace(s[i]))
 		i++;
 	start = i;
 	size = ft_size(s, start);

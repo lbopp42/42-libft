@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_addslash.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbopp <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/07 15:29:53 by lbopp             #+#    #+#             */
-/*   Updated: 2017/01/17 13:43:56 by lbopp            ###   ########.fr       */
+/*   Created: 2017/02/09 16:12:55 by lbopp             #+#    #+#             */
+/*   Updated: 2017/02/09 16:12:58 by lbopp            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char const *s, int fd)
+char	*ft_addslash(char *s1, char *s2)
 {
-	if (s)
-		write(fd, s, ft_strlen(s));
+	if (!s1 || !s2)
+		return (NULL);
+	if (s1[ft_strlen(s1) - 1] && s1[ft_strlen(s1) - 1] != '/')
+		s1 = ft_stradd(s1, "/");
+	s1 = ft_stradd(s1, s2);
+	return (s1);
 }
