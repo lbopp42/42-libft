@@ -6,7 +6,7 @@
 #    By: lbopp <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 15:29:49 by lbopp             #+#    #+#              #
-#    Updated: 2017/02/10 14:54:29 by lbopp            ###   ########.fr        #
+#    Updated: 2019/01/09 17:38:57 by lbopp            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,17 +105,17 @@ CC = gcc
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -c $(SRC) -I includes/
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
+	$(CC) $(CFLAGS) -c $(SRC) -I includes/
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $^ -o $@ -I includes
+	$(CC) $(CFLAGS) -c $^ -o $@ -I includes
 
 clean:
-	@/bin/rm -f $(OBJ)
+	/bin/rm -f $(OBJ)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all
